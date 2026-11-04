@@ -37,15 +37,17 @@ export const AdminAiHelpdeskView = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white rounded-3xl border border-[#e2e8e5] p-6 shadow-sm space-y-5">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-[#d9b972]/20 border border-[#d9b972]/40 flex items-center justify-center text-[#d9b972]">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#e2e8e5] p-4 sm:p-6 shadow-sm space-y-4 sm:space-y-5">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-[#d9b972]/20 border border-[#d9b972]/40 flex items-center justify-center text-[#d9b972] shrink-0">
             <Sparkles className="w-4 h-4 text-[#795a1a]" />
           </div>
-          <div>
-            <h3 className="font-bold text-base text-[#0c302c]">AI-Assisted Operations Help Desk</h3>
-            <p className="text-xs text-gray-500">
+          <div className="min-w-0">
+            <h3 className="font-bold text-base text-[#0c302c] leading-snug">
+              <span className="whitespace-nowrap">AI-Assisted</span> Operations Help Desk
+            </h3>
+            <p className="text-xs text-gray-500 leading-normal">
               Query platform bylaws, custody rules, Stripe payout splits, and regulatory compliance guidelines.
             </p>
           </div>
@@ -69,25 +71,25 @@ export const AdminAiHelpdeskView = () => {
                   : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
               }`}
             >
-              <span>{label}</span>
+              <span className="leading-snug">{label}</span>
             </button>
           ))}
         </div>
 
         {/* Answer Display */}
-        <div className="p-5 rounded-2xl bg-gray-50 border border-gray-200 space-y-3">
-          <div className="flex items-center justify-between">
-            <h4 className="font-bold text-sm text-[#0c302c] flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>{activeDoc.title}</span>
+        <div className="p-4 sm:p-5 rounded-2xl bg-gray-50 border border-gray-200 space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <h4 className="font-bold text-sm text-[#0c302c] flex items-start sm:items-center gap-2 min-w-0 pr-2">
+              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5 sm:mt-0" />
+              <span className="leading-snug">{activeDoc.title}</span>
             </h4>
             <button
               type="button"
               onClick={handleCopy}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 shadow-xs cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 shadow-xs cursor-pointer shrink-0 whitespace-nowrap self-start sm:self-auto"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'Copied' : 'Copy Text'}</span>
+              {copied ? <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" /> : <Copy className="w-3.5 h-3.5 shrink-0" />}
+              <span className="whitespace-nowrap">{copied ? 'Copied' : 'Copy Text'}</span>
             </button>
           </div>
 

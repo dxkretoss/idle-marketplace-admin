@@ -7,7 +7,15 @@ import { AdminLoginView } from './AdminLoginView';
 import { ShieldAlert, LayoutDashboard } from 'lucide-react';
 
 export const AdminLayout = () => {
-  const { isLoggedIn, activeView, feedback, can, role } = useAdmin();
+  const {
+    isLoggedIn,
+    activeView,
+    feedback,
+    can,
+    role,
+    isMobileSidebarOpen,
+    closeMobileSidebar
+  } = useAdmin();
   const navigate = useNavigate();
 
   // If locked, show passcode unlock screen
@@ -19,27 +27,36 @@ export const AdminLayout = () => {
   const isPermitted = can(activeView);
 
   return (
-    <div className="min-h-screen w-full bg-[#f4f7f5] flex overflow-hidden font-sans">
-      {/* Dark Emerald Admin Sidebar */}
+    <div className="min-h-screen w-full bg-[#f4f7f5] flex overflow-hidden font-sans relative">
+      {/* Mobile Backdrop Overlay */}
+      {isMobileSidebarOpen && (
+        <div
+          onClick={closeMobileSidebar}
+          className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 lg:hidden transition-opacity duration-300"
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Dark Emerald Admin Sidebar (fixed drawer on mobile, static sidebar on desktop) */}
       <AdminSidebar />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden w-full">
         <AdminTopbar />
 
         {/* Global Feedback Banner */}
         {feedback && (
-          <div className="bg-emerald-900 text-white px-6 py-2.5 text-xs font-semibold flex items-center justify-between border-b border-emerald-800 animate-in slide-in-from-top-1 duration-150">
-            <span>{feedback}</span>
+          <div className="bg-emerald-900 text-white px-4 sm:px-6 py-2 sm:py-2.5 text-xs font-semibold flex items-center justify-between border-b border-emerald-800 animate-in slide-in-from-top-1 duration-150">
+            <span className="truncate">{feedback}</span>
           </div>
         )}
 
         {/* View Body */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-6">
+        <main className="flex-1 overflow-y-auto p-3.5 sm:p-5 lg:p-8 space-y-4 sm:space-y-6 max-w-full">
           {isPermitted ? (
             <Outlet />
           ) : (
-            <div className="max-w-xl mx-auto my-12 bg-white rounded-3xl border border-amber-200 p-8 text-center space-y-4 shadow-sm">
+            <div className="max-w-xl mx-auto my-8 sm:my-12 bg-white rounded-3xl border border-amber-200 p-6 sm:p-8 text-center space-y-4 shadow-sm">
               <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center mx-auto">
                 <ShieldAlert className="w-7 h-7" />
               </div>

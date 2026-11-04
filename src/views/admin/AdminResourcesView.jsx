@@ -12,8 +12,8 @@ const INTEGRATIONS = [
 
 export const AdminResourcesView = () => {
   return (
-    <div className="space-y-6">
-      <div className="bg-white rounded-3xl border border-[#e2e8e5] p-5 shadow-sm space-y-4">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#e2e8e5] p-4 sm:p-5 shadow-sm space-y-4">
         <div>
           <h3 className="font-bold text-base text-[#0c302c]">Integrated Partner Infrastructure</h3>
           <p className="text-xs text-gray-500">
@@ -21,14 +21,14 @@ export const AdminResourcesView = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {INTEGRATIONS.map((tool, idx) => (
             <div key={idx} className="p-4 rounded-2xl border border-gray-100 hover:border-[#d9b972]/60 hover:bg-gray-50/50 transition-all space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#795a1a] bg-[#fbf3db] px-2 py-0.5 rounded-full border border-[#d9b972]/30">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#795a1a] bg-[#fbf3db] px-2.5 py-0.5 rounded-full border border-[#d9b972]/30 whitespace-nowrap">
                   {tool.cat}
                 </span>
-                <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full whitespace-nowrap">
                   {tool.status}
                 </span>
               </div>

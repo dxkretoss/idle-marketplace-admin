@@ -38,11 +38,11 @@ export const AdminSupportView = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[720px]">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 min-h-[500px] lg:h-[720px]">
         {/* Ticket List (Left 5 Cols) */}
-        <div className="lg:col-span-5 bg-white rounded-3xl border border-[#e2e8e5] p-4 shadow-sm flex flex-col h-full">
-          <div className="p-2 space-y-3 border-b border-gray-100 pb-3">
+        <div className="lg:col-span-5 bg-white rounded-2xl sm:rounded-3xl border border-[#e2e8e5] p-3 sm:p-4 shadow-sm flex flex-col h-[340px] lg:h-full">
+          <div className="p-1 sm:p-2 space-y-3 border-b border-gray-100 pb-3">
             <div className="flex items-center justify-between">
               <h3 className="font-bold text-sm text-[#0c302c]">Support Inbox & Tickets</h3>
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
@@ -51,13 +51,13 @@ export const AdminSupportView = () => {
             </div>
 
             {/* Filter Pills */}
-            <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-xl text-xs">
+            <div className="flex items-center overflow-x-auto no-scrollbar gap-1 bg-gray-100 p-1 rounded-xl text-xs">
               {['All', 'Open', 'In progress', 'Resolved'].map(st => (
                 <button
                   key={st}
                   type="button"
                   onClick={() => setStatusFilter(st)}
-                  className={`flex-1 py-1 text-center rounded-lg font-semibold transition-all cursor-pointer text-[11px] ${
+                  className={`flex-1 py-1 px-2 text-center rounded-lg font-semibold whitespace-nowrap transition-all cursor-pointer text-[11px] ${
                     statusFilter === st ? 'bg-white text-[#0c302c] shadow-xs' : 'text-gray-500 hover:text-gray-800'
                   }`}
                 >
@@ -87,7 +87,7 @@ export const AdminSupportView = () => {
                     <span className="font-mono text-[10px] font-bold opacity-70">
                       {ticket.id} · {ticket.member}
                     </span>
-                    <span className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${
+                    <span className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded whitespace-nowrap shrink-0 ${
                       isSelected
                         ? 'bg-white/20 text-white'
                         : isHigh
@@ -103,8 +103,8 @@ export const AdminSupportView = () => {
                   </h5>
 
                   <div className="flex items-center justify-between text-[10px] opacity-80">
-                    <span>{ticket.category}</span>
-                    <span>{ticket.status}</span>
+                    <span className="truncate pr-1">{ticket.category}</span>
+                    <span className="whitespace-nowrap shrink-0">{ticket.status}</span>
                   </div>
                 </div>
               );
@@ -114,24 +114,24 @@ export const AdminSupportView = () => {
 
         {/* Ticket Detail & Live Thread (Right 7 Cols) */}
         {selectedTicket ? (
-          <div className="lg:col-span-7 bg-white rounded-3xl border border-[#e2e8e5] p-6 shadow-sm flex flex-col h-full">
+          <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl border border-[#e2e8e5] p-4 sm:p-6 shadow-sm flex flex-col min-h-[460px] lg:h-full">
             {/* Ticket Header */}
             <div className="border-b border-gray-100 pb-4 space-y-2">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-xs font-bold text-gray-400">
                     {selectedTicket.id}
                   </span>
-                  <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 whitespace-nowrap shrink-0">
                     {selectedTicket.team}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 shrink-0">
                   <select
                     value={selectedTicket.status}
                     onChange={(e) => updateTicketStatus(selectedTicket.id, e.target.value)}
-                    className="text-xs font-bold px-2.5 py-1 rounded-xl border border-gray-200 bg-gray-50 focus:outline-none cursor-pointer"
+                    className="text-xs font-bold px-2.5 py-1 rounded-xl border border-gray-200 bg-gray-50 focus:outline-none cursor-pointer whitespace-nowrap"
                   >
                     <option value="Open">Status: Open</option>
                     <option value="In progress">Status: In progress</option>

@@ -26,11 +26,11 @@ export const AdminTeamsView = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Team Roster & Tasks */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Staff Roster */}
-        <div className="bg-white rounded-3xl border border-[#e2e8e5] p-5 shadow-sm space-y-4">
+        <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#e2e8e5] p-4 sm:p-5 shadow-sm space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-sm text-[#0c302c] flex items-center gap-2">
               <Users2 className="w-4 h-4 text-[#0c302c]" />
@@ -46,8 +46,8 @@ export const AdminTeamsView = () => {
                   <div className="font-bold text-gray-900">{emp.name}</div>
                   <div className="text-[10px] text-gray-400">{emp.team}</div>
                 </div>
-                <div className="text-right">
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#0c302c]/10 text-[#0c302c]">
+                <div className="text-right shrink-0 ml-2">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#0c302c]/10 text-[#0c302c] whitespace-nowrap">
                     {emp.role}
                   </span>
                 </div>
@@ -57,25 +57,25 @@ export const AdminTeamsView = () => {
         </div>
 
         {/* Dispatch Task Assignments */}
-        <div className="bg-white rounded-3xl border border-[#e2e8e5] p-5 shadow-sm space-y-4">
+        <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#e2e8e5] p-4 sm:p-5 shadow-sm space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-sm text-[#0c302c] flex items-center gap-2">
               <Clock className="w-4 h-4 text-[#d9b972]" />
-              <span>Operational Dispatch Tasks</span>
+              <span>Active Workflow Queues</span>
             </h3>
-            <span className="text-xs text-gray-400">Queue</span>
+            <span className="text-xs text-gray-400">Assigned</span>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2.5">
             {adminData.tasks.map(t => (
-              <div key={t.id} className="p-3 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-between text-xs">
-                <div>
+              <div key={t.id} className="p-3 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                <div className="min-w-0 pr-2">
                   <div className="font-bold text-gray-900">{t.title}</div>
                   <div className="text-[10px] text-gray-500 mt-0.5">
                     Assigned: <strong>{t.assignee}</strong> · {t.team}
                   </div>
                 </div>
-                <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold shrink-0 self-start sm:self-auto whitespace-nowrap ${
                   t.status === 'Completed' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
                 }`}>
                   {t.status}
@@ -87,20 +87,20 @@ export const AdminTeamsView = () => {
       </div>
 
       {/* Internal Staff Channel Chat */}
-      <div className="bg-white rounded-3xl border border-[#e2e8e5] p-5 shadow-sm space-y-4">
-        <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#e2e8e5] p-4 sm:p-5 shadow-sm space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-100 pb-3 gap-2">
           <div className="flex items-center gap-2">
             <MessageSquare className="w-4 h-4 text-[#0c302c]" />
             <span className="font-bold text-sm text-[#0c302c]">Internal Channel Notes</span>
           </div>
 
-          <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-xl text-xs">
+          <div className="flex items-center overflow-x-auto no-scrollbar gap-1 bg-gray-100 p-1 rounded-xl text-xs">
             {['general', 'support', 'safety', 'elite'].map(ch => (
               <button
                 key={ch}
                 type="button"
                 onClick={() => setActiveChannel(ch)}
-                className={`px-3 py-1 rounded-lg font-bold capitalize transition-all cursor-pointer ${
+                className={`px-3 py-1 rounded-lg font-bold capitalize whitespace-nowrap transition-all cursor-pointer ${
                   activeChannel === ch ? 'bg-white text-[#0c302c] shadow-xs' : 'text-gray-500 hover:text-gray-800'
                 }`}
               >
@@ -124,7 +124,7 @@ export const AdminTeamsView = () => {
           ))}
         </div>
 
-        <form onSubmit={handleSendChat} className="flex items-center gap-2 pt-1">
+        <form onSubmit={handleSendChat} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pt-1">
           <input
             type="text"
             value={chatInput}
@@ -134,7 +134,7 @@ export const AdminTeamsView = () => {
           />
           <button
             type="submit"
-            className="px-4 py-2.5 rounded-xl bg-[#0c302c] text-white font-bold text-xs hover:bg-[#16443c] transition-colors flex items-center gap-1.5 cursor-pointer"
+            className="px-4 py-2.5 rounded-xl bg-[#0c302c] text-white font-bold text-xs hover:bg-[#16443c] transition-colors flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
           >
             <Send className="w-3.5 h-3.5" />
             <span>Post Note</span>
@@ -144,4 +144,3 @@ export const AdminTeamsView = () => {
     </div>
   );
 };
-

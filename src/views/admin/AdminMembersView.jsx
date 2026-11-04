@@ -28,10 +28,10 @@ export const AdminMembersView = () => {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header & Controls */}
-      <div className="bg-white rounded-3xl border border-[#e2e8e5] p-5 shadow-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#e2e8e5] p-4 sm:p-5 shadow-sm space-y-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           <div>
             <h3 className="font-bold text-base text-[#0c302c]">Member Directory & Verification</h3>
             <p className="text-xs text-gray-500">
@@ -39,25 +39,25 @@ export const AdminMembersView = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="relative">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
+            <div className="relative flex-1 sm:flex-initial">
               <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search member, ID, city..."
-                className="pl-9 pr-4 py-2 rounded-xl border border-gray-200 text-xs text-gray-800 focus:outline-none focus:border-[#0c302c] w-56"
+                className="w-full sm:w-56 pl-9 pr-4 py-2 rounded-xl border border-gray-200 text-xs text-gray-800 focus:outline-none focus:border-[#0c302c]"
               />
             </div>
 
-            <div className="flex items-center rounded-xl bg-gray-100 p-1 border border-gray-200 text-xs">
+            <div className="flex items-center overflow-x-auto no-scrollbar rounded-xl bg-gray-100 p-1 border border-gray-200 text-xs">
               {['All', 'Verified', 'Pending', 'Review'].map(f => (
                 <button
                   key={f}
                   type="button"
                   onClick={() => setFilter(f)}
-                  className={`px-3 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                  className={`flex-1 sm:flex-initial px-3 py-1 rounded-lg font-semibold whitespace-nowrap transition-all cursor-pointer ${
                     filter === f ? 'bg-white text-[#0c302c] shadow-xs' : 'text-gray-500 hover:text-gray-800'
                   }`}
                 >
@@ -69,18 +69,18 @@ export const AdminMembersView = () => {
         </div>
 
         {/* Member Directory Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse text-xs">
+        <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+          <table className="w-full min-w-[700px] text-left border-collapse text-xs">
             <thead>
               <tr className="border-b border-gray-200 text-[10px] font-bold uppercase tracking-wider text-gray-400">
-                <th className="py-3 px-3">Member ID</th>
-                <th className="py-3 px-3">Name & Contact</th>
-                <th className="py-3 px-3">Plan Tier</th>
-                <th className="py-3 px-3">Location</th>
-                <th className="py-3 px-3">Identity KYC</th>
-                <th className="py-3 px-3">Credentials</th>
-                <th className="py-3 px-3">Account Status</th>
-                <th className="py-3 px-3 text-right">Actions</th>
+                <th className="py-3 px-3 whitespace-nowrap">Member ID</th>
+                <th className="py-3 px-3 whitespace-nowrap">Name & Contact</th>
+                <th className="py-3 px-3 whitespace-nowrap">Plan Tier</th>
+                <th className="py-3 px-3 whitespace-nowrap">Location</th>
+                <th className="py-3 px-3 whitespace-nowrap">Identity KYC</th>
+                <th className="py-3 px-3 whitespace-nowrap">Credentials</th>
+                <th className="py-3 px-3 whitespace-nowrap">Account Status</th>
+                <th className="py-3 px-3 text-right whitespace-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -90,36 +90,36 @@ export const AdminMembersView = () => {
 
                 return (
                   <tr key={user.id} className="hover:bg-gray-50/60 transition-colors">
-                    <td className="py-3 px-3 font-mono font-bold text-gray-700">
+                    <td className="py-3 px-3 font-mono font-bold text-gray-700 whitespace-nowrap">
                       {user.id}
                     </td>
-                    <td className="py-3 px-3">
+                    <td className="py-3 px-3 whitespace-nowrap">
                       <div className="font-semibold text-gray-900">{user.name}</div>
                       <div className="text-[10px] text-gray-400">{user.email}</div>
                     </td>
-                    <td className="py-3 px-3">
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#0c302c]/10 text-[#0c302c] border border-[#0c302c]/20">
+                    <td className="py-3 px-3 whitespace-nowrap">
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#0c302c]/10 text-[#0c302c] border border-[#0c302c]/20 whitespace-nowrap">
                         {user.plan}
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-gray-600">
+                    <td className="py-3 px-3 text-gray-600 whitespace-nowrap">
                       {user.city}
                     </td>
-                    <td className="py-3 px-3">
-                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                    <td className="py-3 px-3 whitespace-nowrap">
+                      <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap ${
                         isVerified
                           ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                           : 'bg-amber-50 text-amber-700 border border-amber-200'
                       }`}>
-                        {isVerified ? <CheckCircle className="w-3 h-3" /> : <AlertTriangle className="w-3 h-3" />}
-                        <span>{user.identity}</span>
+                        {isVerified ? <CheckCircle className="w-3 h-3 shrink-0" /> : <AlertTriangle className="w-3 h-3 shrink-0" />}
+                        <span className="whitespace-nowrap">{user.identity}</span>
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-[11px] text-gray-500">
+                    <td className="py-3 px-3 text-[11px] text-gray-500 whitespace-nowrap">
                       {user.credentials}
                     </td>
-                    <td className="py-3 px-3">
-                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                    <td className="py-3 px-3 whitespace-nowrap">
+                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap ${
                         isActive
                           ? 'bg-emerald-100 text-emerald-800'
                           : 'bg-rose-100 text-rose-800'
@@ -127,11 +127,11 @@ export const AdminMembersView = () => {
                         {user.status}
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-right space-x-1">
+                    <td className="py-3 px-3 text-right space-x-1 whitespace-nowrap">
                       <button
                         type="button"
                         onClick={() => updateMemberStatus(user.id, isActive ? 'Review' : 'Active')}
-                        className="px-2.5 py-1 rounded-lg border border-gray-200 hover:bg-gray-100 font-semibold text-[11px] text-gray-700 transition-colors cursor-pointer"
+                        className="px-2.5 py-1 rounded-lg border border-gray-200 hover:bg-gray-100 font-semibold text-[11px] text-gray-700 transition-colors cursor-pointer whitespace-nowrap"
                       >
                         {isActive ? 'Flag Review' : 'Activate'}
                       </button>

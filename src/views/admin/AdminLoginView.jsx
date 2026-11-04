@@ -233,7 +233,7 @@ export const AdminLoginView = () => {
                 <div className="flex items-center gap-2.5 min-w-0">
                   <span className="text-[#d9b972] text-base">{ADMIN_ROLES[selectedRole]?.icon || '♛'}</span>
                   <span className="font-semibold truncate">{selectedRole}</span>
-                  <span className="text-[10px] bg-[#1e443c] text-[#8fb8a8] px-2 py-0.5 rounded-full font-medium">
+                  <span className="text-[10px] bg-[#1e443c] text-[#8fb8a8] px-2 py-0.5 rounded-full font-medium whitespace-nowrap shrink-0">
                     {ADMIN_ROLES[selectedRole]?.views.length} views
                   </span>
                 </div>

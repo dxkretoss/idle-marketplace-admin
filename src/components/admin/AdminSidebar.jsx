@@ -15,9 +15,8 @@ import {
   Settings,
   Grid,
   FileText,
-  ArrowLeft,
   LogOut,
-  ShieldAlert
+  X
 } from 'lucide-react';
 
 const ICON_MAP = {
@@ -37,15 +36,32 @@ const ICON_MAP = {
 };
 
 export const AdminSidebar = () => {
-  const { role, activeView, setActiveView, can, adminData, adminEmail, logoutAdmin } = useAdmin();
+  const {
+    role,
+    activeView,
+    can,
+    adminData,
+    adminEmail,
+    logoutAdmin,
+    isMobileSidebarOpen,
+    closeMobileSidebar
+  } = useAdmin();
 
   const openTicketsCount = adminData.tickets.filter(t => t.status === 'Open').length;
 
   return (
-    <aside className="w-64 bg-[#0a2622] text-[#ecf6f1] flex flex-col h-screen flex-shrink-0 border-r border-[#1e443c] select-none">
+    <aside
+      className={`fixed inset-y-0 left-0 z-50 w-72 max-w-[85vw] lg:w-64 lg:static lg:h-screen lg:flex-shrink-0 bg-[#0a2622] text-[#ecf6f1] flex flex-col border-r border-[#1e443c] select-none transition-transform duration-300 ease-in-out ${
+        isMobileSidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'
+      }`}
+    >
       {/* Brand Header */}
-      <div className="p-5 border-b border-[#1e443c]">
-        <Link to="/" className="flex items-center gap-2.5 group cursor-pointer">
+      <div className="p-4 sm:p-5 border-b border-[#1e443c] flex items-center justify-between">
+        <Link
+          to="/"
+          onClick={closeMobileSidebar}
+          className="flex items-center gap-2.5 group cursor-pointer"
+        >
           <img
             src="/IDLE_logo.png"
             alt="IDLE"
@@ -55,7 +71,20 @@ export const AdminSidebar = () => {
             Admin
           </span>
         </Link>
-        <p className="text-[11px] text-[#8fb8a8] mt-2 font-normal leading-relaxed">
+
+        {/* Mobile Close Button */}
+        <button
+          type="button"
+          onClick={closeMobileSidebar}
+          className="lg:hidden p-1.5 rounded-xl text-[#8fb8a8] hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+          aria-label="Close menu"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      </div>
+
+      <div className="px-4 sm:px-5 py-2.5 border-b border-[#1e443c]/60 bg-[#071d19]/40">
+        <p className="text-[11px] text-[#8fb8a8] font-normal leading-relaxed">
           Owner Operations Center · North Texas Metro
         </p>
       </div>
@@ -82,10 +111,12 @@ export const AdminSidebar = () => {
                   <Link
                     key={id}
                     to={targetRoute}
-                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${isActive
-                      ? 'bg-[#d9b972] text-[#0a2622] font-bold shadow-md'
-                      : 'text-[#c2ded3] hover:bg-white/10 hover:text-white'
-                      }`}
+                    onClick={closeMobileSidebar}
+                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                      isActive
+                        ? 'bg-[#d9b972] text-[#0a2622] font-bold shadow-md'
+                        : 'text-[#c2ded3] hover:bg-white/10 hover:text-white'
+                    }`}
                   >
                     <div className="flex items-center gap-2.5">
                       <IconComponent className={`w-4 h-4 ${isActive ? 'text-[#0a2622]' : 'text-[#8fb8a8]'}`} />
@@ -124,7 +155,10 @@ export const AdminSidebar = () => {
 
         <button
           type="button"
-          onClick={logoutAdmin}
+          onClick={() => {
+            closeMobileSidebar();
+            logoutAdmin();
+          }}
           className="p-2 rounded-xl text-rose-300 hover:text-white hover:bg-rose-950/60 transition-colors cursor-pointer shrink-0 border border-transparent hover:border-rose-800/40"
           title="Logout"
           aria-label="Logout"
@@ -135,4 +169,3 @@ export const AdminSidebar = () => {
     </aside>
   );
 };
-

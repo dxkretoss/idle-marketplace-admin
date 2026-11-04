@@ -6,8 +6,8 @@ export const AdminAutomationsView = () => {
   const { adminData, toggleAutomation } = useAdmin();
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white rounded-3xl border border-[#e2e8e5] p-5 shadow-sm space-y-4">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#e2e8e5] p-4 sm:p-5 shadow-sm space-y-4">
         <div>
           <h3 className="font-bold text-base text-[#0c302c]">Automated Rule Control Room</h3>
           <p className="text-xs text-gray-500">
@@ -17,11 +17,11 @@ export const AdminAutomationsView = () => {
 
         <div className="divide-y divide-gray-100">
           {adminData.automations.map(auto => (
-            <div key={auto.id} className="py-4 flex items-center justify-between gap-4">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <h4 className="font-bold text-sm text-gray-900">{auto.name}</h4>
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+            <div key={auto.id} className="py-3.5 sm:py-4 flex items-center justify-between gap-3 sm:gap-4">
+              <div className="space-y-1.5 flex-1 min-w-0 pr-1">
+                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                  <h4 className="font-bold text-sm text-gray-900 leading-snug">{auto.name}</h4>
+                  <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${
                     auto.enabled ? 'bg-emerald-100 text-emerald-800' : 'bg-gray-100 text-gray-500'
                   }`}>
                     {auto.enabled ? 'Active Trigger' : 'Disabled'}
@@ -35,7 +35,7 @@ export const AdminAutomationsView = () => {
               <button
                 type="button"
                 onClick={() => toggleAutomation(auto.id)}
-                className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                className={`relative inline-flex h-6 w-11 shrink-0 ml-2 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
                   auto.enabled ? 'bg-[#0c302c]' : 'bg-gray-200'
                 }`}
               >

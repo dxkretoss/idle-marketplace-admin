@@ -323,6 +323,16 @@ export const AdminProvider = ({ children }) => {
 
   const currentPathView = getActiveViewFromPath(location.pathname);
   const activeView = currentPathView || 'overview';
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+
+  // Close mobile sidebar whenever route changes
+  useEffect(() => {
+    setIsMobileSidebarOpen(false);
+  }, [location.pathname]);
+
+  const toggleMobileSidebar = () => setIsMobileSidebarOpen(prev => !prev);
+  const closeMobileSidebar = () => setIsMobileSidebarOpen(false);
+
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     try {
       if (typeof window !== 'undefined' && window.sessionStorage) {
@@ -534,7 +544,11 @@ export const AdminProvider = ({ children }) => {
       replyToTicket,
       toggleAutomation,
       approveEliteItem,
-      updateReelStatus
+      updateReelStatus,
+      isMobileSidebarOpen,
+      setIsMobileSidebarOpen,
+      toggleMobileSidebar,
+      closeMobileSidebar
     }}>
       {children}
     </AdminContext.Provider>

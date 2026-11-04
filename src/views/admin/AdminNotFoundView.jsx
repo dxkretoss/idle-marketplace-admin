@@ -109,7 +109,7 @@ export const AdminNotFoundView = () => {
   return (
     <div className="min-h-screen w-full bg-[#f4f7f5] text-[#172d28] flex flex-col font-sans select-none">
       {/* Top Header Bar */}
-      <header className="h-16 bg-[#0a2622] border-b border-[#1e443c] px-6 flex items-center justify-between sticky top-0 z-30">
+      <header className="h-14 sm:h-16 bg-[#0a2622] border-b border-[#1e443c] px-4 sm:px-6 flex items-center justify-between sticky top-0 z-30">
         <div className="flex items-center gap-3">
           <Link to="/" className="flex items-center gap-2.5">
             <img
@@ -126,7 +126,7 @@ export const AdminNotFoundView = () => {
           </span>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           {isLoggedIn ? (
             <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#163a32] border border-[#2b564c] text-xs text-[#c2ded3]">
               <ShieldCheck className="w-3.5 h-3.5 text-[#d9b972]" />
@@ -140,7 +140,7 @@ export const AdminNotFoundView = () => {
           <button
             type="button"
             onClick={() => navigate('/')}
-            className="px-3.5 py-1.5 rounded-xl bg-[#d9b972] text-[#0a2622] font-bold text-xs hover:opacity-95 shadow transition-all cursor-pointer flex items-center gap-1.5"
+            className="px-3 sm:px-3.5 py-1.5 rounded-xl bg-[#d9b972] text-[#0a2622] font-bold text-xs hover:opacity-95 shadow transition-all cursor-pointer flex items-center gap-1.5"
           >
             <LayoutDashboard className="w-3.5 h-3.5" />
             <span>Dashboard</span>
@@ -149,67 +149,67 @@ export const AdminNotFoundView = () => {
       </header>
 
       {/* Main 404 Body */}
-      <main className="flex-1 max-w-5xl w-full mx-auto p-4 sm:p-8 lg:p-12 space-y-10">
+      <main className="flex-1 max-w-5xl w-full mx-auto p-3.5 sm:p-8 lg:p-12 space-y-6 sm:space-y-10">
         {/* Hero 404 Box */}
-        <div className="bg-white rounded-3xl border border-[#e2e8e5] p-8 sm:p-12 shadow-sm text-center relative overflow-hidden">
+        <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#e2e8e5] p-6 sm:p-12 shadow-sm text-center relative overflow-hidden">
           {/* Subtle decorative glow */}
           <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#d9b972]/10 rounded-full blur-3xl pointer-events-none" />
 
           {/* Compass Icon Badge */}
-          <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-[#0a2622] text-[#d9b972] shadow-xl shadow-emerald-950/15 mb-6 border border-[#1e443c]">
-            <Compass className="w-10 h-10 animate-spin-slow" />
+          <div className="relative inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-[#0a2622] text-[#d9b972] shadow-xl shadow-emerald-950/15 mb-4 sm:mb-6 border border-[#1e443c]">
+            <Compass className="w-8 h-8 sm:w-10 sm:h-10 animate-spin-slow" />
           </div>
 
           {/* Status Label */}
           <div className="flex items-center justify-center gap-2 mb-3">
-            <span className="text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-[#fbf3db] text-[#795a1a] border border-[#d9b972]/50">
+            <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-[#fbf3db] text-[#795a1a] border border-[#d9b972]/50">
               HTTP 404 · Route Not Found
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-2xl sm:text-4xl font-bold font-serif text-[#0c302c] tracking-tight">
+          <h1 className="text-xl sm:text-3xl md:text-4xl font-bold font-serif text-[#0c302c] tracking-tight">
             Lost in IDLE Operations?
           </h1>
 
           {/* Path Display */}
-          <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-gray-50 border border-gray-200 text-xs font-mono text-gray-700">
-            <span className="text-gray-400">Attempted Route:</span>
-            <span className="font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+          <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-gray-50 border border-gray-200 text-xs font-mono text-gray-700 max-w-full overflow-hidden">
+            <span className="text-gray-400 shrink-0">Attempted Route:</span>
+            <span className="font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200 truncate">
               {location.pathname || '/'}
             </span>
           </div>
 
           {/* Description */}
-          <p className="mt-4 text-xs sm:text-sm text-gray-600 max-w-lg mx-auto leading-relaxed">
+          <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-gray-600 max-w-lg mx-auto leading-relaxed">
             The operational page or route you attempted to access does not exist in IDLE Admin,
             has been relocated, or is temporarily unavailable.
           </p>
 
           {/* Primary Action Buttons */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2.5 sm:gap-3">
             <Link
               to="/overview"
-              className="px-5 py-2.5 rounded-xl bg-[#d9b972] text-[#0a2622] font-bold text-xs hover:bg-[#cbb06d] shadow-md transition-all cursor-pointer flex items-center gap-2"
+              className="justify-center px-5 py-2.5 rounded-xl bg-[#d9b972] text-[#0a2622] font-bold text-xs hover:bg-[#cbb06d] shadow-md transition-all cursor-pointer flex items-center gap-2"
             >
-              <LayoutDashboard className="w-4 h-4" />
+              <LayoutDashboard className="w-4 h-4 shrink-0" />
               <span>Operations Overview</span>
             </Link>
 
             <Link
               to="/membership"
-              className="px-5 py-2.5 rounded-xl bg-[#0a2622] text-white font-bold text-xs hover:bg-[#123832] shadow-md transition-all cursor-pointer flex items-center gap-2 border border-[#1e443c]"
+              className="justify-center px-5 py-2.5 rounded-xl bg-[#0a2622] text-white font-bold text-xs hover:bg-[#123832] shadow-md transition-all cursor-pointer flex items-center gap-2 border border-[#1e443c]"
             >
-              <Users className="w-4 h-4 text-[#d9b972]" />
+              <Users className="w-4 h-4 text-[#d9b972] shrink-0" />
               <span>Member Management (/membership)</span>
             </Link>
 
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="px-4 py-2.5 rounded-xl bg-gray-100 text-gray-700 font-semibold text-xs hover:bg-gray-200 transition-all cursor-pointer flex items-center gap-2 border border-gray-200"
+              className="justify-center px-4 py-2.5 rounded-xl bg-gray-100 text-gray-700 font-semibold text-xs hover:bg-gray-200 transition-all cursor-pointer flex items-center gap-2 border border-gray-200"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4 shrink-0" />
               <span>Go Back</span>
             </button>
           </div>
